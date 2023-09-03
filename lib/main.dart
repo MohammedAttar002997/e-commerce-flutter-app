@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'home/main_home_page.dart';
 
 void main() {
   runApp(const FlutterEcommerceApp());
@@ -9,6 +10,9 @@ class FlutterEcommerceApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: MainFoodPage(),
+    );
   }
 }
