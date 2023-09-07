@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app_clean_code/home/food_page_body.dart';
 import 'package:flutter_ecommerce_app_clean_code/utils/colors.dart';
+import 'package:flutter_ecommerce_app_clean_code/utils/dimensions.dart';
 import 'package:flutter_ecommerce_app_clean_code/widgets/big_text.dart';
 import 'package:flutter_ecommerce_app_clean_code/widgets/small_text.dart';
 
@@ -14,16 +15,23 @@ class MainFoodPage extends StatefulWidget {
 class _MainFoodPageState extends State<MainFoodPage> {
   @override
   Widget build(BuildContext context) {
+    print("Current screen size${MediaQuery
+        .of(context)
+        .size
+        .height
+        .toString() }");
     return Scaffold(
       body: Column(
         children: [
           Container(
-            margin: const EdgeInsets.only(top: 45, bottom: 15),
-            padding: const EdgeInsets.only(left: 20, right: 20),
+            margin:  EdgeInsets.only(top: Dimensions.height45, bottom: Dimensions.height12),
+            padding: EdgeInsets.only(
+                left: Dimensions.width20, right: Dimensions.width20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     BigText(
                       text: "Syria",
@@ -44,21 +52,22 @@ class _MainFoodPageState extends State<MainFoodPage> {
                   ],
                 ),
                 Container(
-                  width: 45,
-                  height: 45,
+                  width: Dimensions.width45,
+                  height: Dimensions.height45,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(Dimensions.radius15),
                     color: AppColor.mainColor,
                   ),
-                  child: const Icon(
+                  child:  Icon(
                     Icons.search,
                     color: Colors.white,
+                    size: Dimensions.iconSize24,
                   ),
                 ),
               ],
             ),
           ),
-          const  FoodPageBody(),
+          const FoodPageBody(),
         ],
       ),
     );
