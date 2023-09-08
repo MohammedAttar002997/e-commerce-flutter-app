@@ -15,16 +15,14 @@ class MainFoodPage extends StatefulWidget {
 class _MainFoodPageState extends State<MainFoodPage> {
   @override
   Widget build(BuildContext context) {
-    print("Current screen size${MediaQuery
-        .of(context)
-        .size
-        .height
-        .toString() }");
+    print(
+        "Current screen size${MediaQuery.of(context).size.height.toString()}");
     return Scaffold(
       body: Column(
         children: [
           Container(
-            margin:  EdgeInsets.only(top: Dimensions.height45, bottom: Dimensions.height12),
+            margin: EdgeInsets.only(
+                top: Dimensions.height45, bottom: Dimensions.height12),
             padding: EdgeInsets.only(
                 left: Dimensions.width20, right: Dimensions.width20),
             child: Row(
@@ -58,7 +56,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
                     borderRadius: BorderRadius.circular(Dimensions.radius15),
                     color: AppColor.mainColor,
                   ),
-                  child:  Icon(
+                  child: Icon(
                     Icons.search,
                     color: Colors.white,
                     size: Dimensions.iconSize24,
@@ -67,7 +65,11 @@ class _MainFoodPageState extends State<MainFoodPage> {
               ],
             ),
           ),
-          const FoodPageBody(),
+          const Expanded(
+            child: SingleChildScrollView(
+              child: FoodPageBody(),
+            ),
+          ),
         ],
       ),
     );
