@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_app_clean_code/screens/food/popular_food_detail.dart';
+import 'package:flutter_ecommerce_app_clean_code/controllers/popular_product_controller.dart';
 import 'package:flutter_ecommerce_app_clean_code/screens/food/recommended_food_detail.dart';
+import 'package:flutter_ecommerce_app_clean_code/screens/home/food_page_body.dart';
 import 'package:get/get.dart';
+import 'helper/dependencies.dart' as dep;
 import 'screens/home/main_home_page.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await dep.init();
   runApp(const FlutterEcommerceApp());
 }
 
@@ -13,9 +17,10 @@ class FlutterEcommerceApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.find<PopularProductController>().getPopularProductList();
     return const GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: RecommendedFoodDetail(),
+      home: MainFoodPage(),
     );
   }
 }
