@@ -1,27 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_app_clean_code/controllers/recommended_product_controller.dart';
+import 'package:flutter_ecommerce_app_clean_code/routes/route_helper.dart';
+import 'package:flutter_ecommerce_app_clean_code/utils/app_constant.dart';
 import 'package:flutter_ecommerce_app_clean_code/utils/colors.dart';
 import 'package:flutter_ecommerce_app_clean_code/widgets/big_text.dart';
+import 'package:get/get.dart';
 
 import '../../utils/dimensions.dart';
 import '../../widgets/app_icon.dart';
 import '../../widgets/exbandable_text_widget.dart';
 
 class RecommendedFoodDetail extends StatelessWidget {
-  const RecommendedFoodDetail({super.key});
+  final int pageId;
+
+  const RecommendedFoodDetail({
+    super.key,
+    required this.pageId,
+  });
 
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<RecommendedProductController>().recommendedProductList[pageId];
     return Scaffold(
       backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            automaticallyImplyLeading: false,
             toolbarHeight: 75,
-            title: const Row(
+            title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppIcon(icon: Icons.clear),
-                AppIcon(icon: Icons.shopping_cart_outlined),
+                GestureDetector(
+                  child: const AppIcon(icon: Icons.clear),
+                  onTap: () {
+                    Get.toNamed(
+                      RouteHelper.getInitial(),
+                    );
+                  },
+                ),
+                const AppIcon(
+                  icon: Icons.shopping_cart_outlined,
+                ),
               ],
             ),
             bottom: PreferredSize(
@@ -35,10 +56,11 @@ class RecommendedFoodDetail extends StatelessWidget {
                     topLeft: Radius.circular(Dimensions.radius20),
                   ),
                 ),
-                padding:  EdgeInsets.only(top: Dimensions.height10, bottom: Dimensions.height10),
+                padding: EdgeInsets.only(
+                    top: Dimensions.height10, bottom: Dimensions.height10),
                 child: Center(
                   child: BigText(
-                    text: "Creole Rice Side Dish Recipe",
+                    text: product.name!,
                     size: Dimensions.font26,
                   ),
                 ),
@@ -48,8 +70,8 @@ class RecommendedFoodDetail extends StatelessWidget {
             expandedHeight: 300,
             backgroundColor: AppColor.yellowColor,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset(
-                "assets/images/food03.jpg",
+              background: Image.network(
+                AppConstant.BASE_URL + AppConstant.UPLOAD_URL + product.img!,
                 fit: BoxFit.cover,
                 width: double.maxFinite,
               ),
@@ -60,10 +82,9 @@ class RecommendedFoodDetail extends StatelessWidget {
               children: [
                 Container(
                   margin: EdgeInsets.only(
-                    left: Dimensions.width20, right: Dimensions.width20),
-                  child: const ExpandableTextWidget(
-                    text:
-                        "Chicken is a popular and versatile protein source enjoyed by people all around the world. Whether grilled, roasted, fried, or baked, chicken dishes offer a wide range of flavors and culinary possibilities. Its tender and juicy meat, combined with its mild taste, makes chicken a favorite ingredient in numerous cuisines. Chicken is a popular and versatile protein source enjoyed by people all around the world. Whether grilled, roasted, fried, or baked, chicken dishes offer a wide range of flavors and culinary possibilities. Its tender and juicy meat, combined with its mild taste, makes chicken a favorite ingredient in numerous cuisines. makes chicken a favorite ingredient in numerous cuisinesmakes chicken a favorite ingredient in numerous cuisinesmakes chicken a favorite ingredient in numerous cuisines. Chicken is a popular and versatile protein source enjoyed by people all around the world. Whether grilled, roasted, fried, or baked, chicken dishes offer a wide range of flavors and culinary possibilities. Its tender and juicy meat, combined with its mild taste, makes chicken a favorite ingredient in numerous cuisines. Chicken is a popular and versatile protein source enjoyed by people all around the world. Whether grilled, roasted, fried, or baked, chicken dishes offer a wide range of flavors and culinary possibilities. Its tender and juicy meat, combined with its mild taste, makes chicken a favorite ingredient in numerous cuisines. makes chicken a favorite ingredient in numerous cuisinesmakes chicken a favorite ingredient in numerous cuisinesmakes chicken a favorite ingredient in numerous cuisinesChicken is a popular and versatile protein source enjoyed by people all around the world. Whether grilled, roasted, fried, or baked, chicken dishes offer a wide range of flavors and culinary possibilities. Its tender and juicy meat, combined with its mild taste, makes chicken a favorite ingredient in numerous cuisines. Chicken is a popular and versatile protein source enjoyed by people all around the world. Whether grilled, roasted, fried, or baked, chicken dishes offer a wide range of flavors and culinary possibilities. Its tender and juicy meat, combined with its mild taste, makes chicken a favorite ingredient in numerous cuisines. makes chicken a favorite ingredient in numerous cuisinesmakes chicken a favorite ingredient in numerous cuisinesmakes chicken a favorite ingredient in numerous cuisinesChicken is a popular and versatile protein source enjoyed by people all around the world. Whether grilled, roasted, fried, or baked, chicken dishes offer a wide range of flavors and culinary possibilities. Its tender and juicy meat, combined with its mild taste, makes chicken a favorite ingredient in numerous cuisines. Chicken is a popular and versatile protein source enjoyed by people all around the world. Whether grilled, roasted, fried, or baked, chicken dishes offer a wide range of flavors and culinary possibilities. Its tender and juicy meat, combined with its mild taste, makes chicken a favorite ingredient in numerous cuisines. makes chicken a favorite ingredient in numerous cuisinesmakes chicken a favorite ingredient in numerous cuisinesmakes chicken a favorite ingredient in numerous cuisinesChicken is a popular and versatile protein source enjoyed by people all around the world. Whether grilled, roasted, fried, or baked, chicken dishes offer a wide range of flavors and culinary possibilities. Its tender and juicy meat, combined with its mild taste, makes chicken a favorite ingredient in numerous cuisines. Chicken is a popular and versatile protein source enjoyed by people all around the world. Whether grilled, roasted, fried, or baked, chicken dishes offer a wide range of flavors and culinary possibilities. Its tender and juicy meat, combined with its mild taste, makes chicken a favorite ingredient in numerous cuisines. makes chicken a favorite ingredient in numerous cuisinesmakes chicken a favorite ingredient in numerous cuisinesmakes chicken a favorite ingredient in numerous cuisinesChicken is a popular and versatile protein source enjoyed by people all around the world. Whether grilled, roasted, fried, or baked, chicken dishes offer a wide range of flavors and culinary possibilities. Its tender and juicy meat, combined with its mild taste, makes chicken a favorite ingredient in numerous cuisines. Chicken is a popular and versatile protein source enjoyed by people all around the world. Whether grilled, roasted, fried, or baked, chicken dishes offer a wide range of flavors and culinary possibilities. Its tender and juicy meat, combined with its mild taste, makes chicken a favorite ingredient in numerous cuisines. makes chicken a favorite ingredient in numerous cuisinesmakes chicken a favorite ingredient in numerous cuisinesmakes chicken a favorite ingredient in numerous cuisinesChicken is a popular and versatile protein source enjoyed by people all around the world. Whether grilled, roasted, fried, or baked, chicken dishes offer a wide range of flavors and culinary possibilities. Its tender and juicy meat, combined with its mild taste, makes chicken a favorite ingredient in numerous cuisines. Chicken is a popular and versatile protein source enjoyed by people all around the world. Whether grilled, roasted, fried, or baked, chicken dishes offer a wide range of flavors and culinary possibilities. Its tender and juicy meat, combined with its mild taste, makes chicken a favorite ingredient in numerous cuisines. makes chicken a favorite ingredient in numerous cuisinesmakes chicken a favorite ingredient in numerous cuisinesmakes chicken a favorite ingredient in numerous cuisinesChicken is a popular and versatile protein source enjoyed by people all around the world. Whether grilled, roasted, fried, or baked, chicken dishes offer a wide range of flavors and culinary possibilities. Its tender and juicy meat, combined with its mild taste, makes chicken a favorite ingredient in numerous cuisines. Chicken is a popular and versatile protein source enjoyed by people all around the world. Whether grilled, roasted, fried, or baked, chicken dishes offer a wide range of flavors and culinary possibilities. Its tender and juicy meat, combined with its mild taste, makes chicken a favorite ingredient in numerous cuisines. makes chicken a favorite ingredient in numerous cuisinesmakes chicken a favorite ingredient in numerous cuisinesmakes chicken a favorite ingredient in numerous cuisines",
+                      left: Dimensions.width20, right: Dimensions.width20),
+                  child: ExpandableTextWidget(
+                    text: product.description!,
                   ),
                 ),
               ],
@@ -91,7 +112,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                   iconSize: Dimensions.iconSize24,
                 ),
                 BigText(
-                    text: "\$12.88  X  0 ",
+                    text: "\$ ${product.price!}  X  0 ",
                     color: AppColor.mainBlackColor,
                     size: Dimensions.font26),
                 AppIcon(

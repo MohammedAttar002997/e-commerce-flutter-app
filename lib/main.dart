@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app_clean_code/controllers/popular_product_controller.dart';
+import 'package:flutter_ecommerce_app_clean_code/routes/route_helper.dart';
 import 'package:flutter_ecommerce_app_clean_code/screens/food/recommended_food_detail.dart';
 import 'package:flutter_ecommerce_app_clean_code/screens/home/food_page_body.dart';
 import 'package:get/get.dart';
@@ -20,9 +21,11 @@ class FlutterEcommerceApp extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.find<PopularProductController>().getPopularProductList();
     Get.find<RecommendedProductController>().getRecommendedProductList();
-    return const GetMaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MainFoodPage(),
+      initialRoute: RouteHelper.initial,
+      getPages: RouteHelper.routes,
+      home: const MainFoodPage(),
     );
   }
 }

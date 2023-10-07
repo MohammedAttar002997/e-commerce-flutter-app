@@ -9,10 +9,12 @@ import 'icon_and_text_widget.dart';
 class AppColumn extends StatelessWidget {
   final String text;
   final double size;
+  final int? starCount;
 
   const AppColumn({
     super.key,
     required this.text,
+    this.starCount=5,
     this.size = 0,
   });
 
@@ -32,7 +34,7 @@ class AppColumn extends StatelessWidget {
           children: [
             Wrap(
               children: List.generate(
-                5,
+                starCount!,
                 (index) => const Icon(
                   Icons.star,
                   color: AppColor.mainColor,

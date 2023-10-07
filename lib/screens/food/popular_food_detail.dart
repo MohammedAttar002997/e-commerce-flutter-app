@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_app_clean_code/controllers/popular_product_controller.dart';
+import 'package:flutter_ecommerce_app_clean_code/screens/home/main_home_page.dart';
+import 'package:flutter_ecommerce_app_clean_code/utils/app_constant.dart';
 import 'package:flutter_ecommerce_app_clean_code/utils/dimensions.dart';
 import 'package:flutter_ecommerce_app_clean_code/widgets/app_icon.dart';
 import 'package:flutter_ecommerce_app_clean_code/widgets/exbandable_text_widget.dart';
+import 'package:get/get.dart';
 
 import '../../utils/colors.dart';
 import '../../widgets/app_column.dart';
@@ -10,10 +14,17 @@ import '../../widgets/icon_and_text_widget.dart';
 import '../../widgets/small_text.dart';
 
 class PopularFoodDetial extends StatelessWidget {
-  const PopularFoodDetial({super.key});
+  int pageId;
+
+  PopularFoodDetial({
+    super.key,
+    required this.pageId,
+  });
 
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<PopularProductController>().popularProductList[pageId];
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -24,11 +35,13 @@ class PopularFoodDetial extends StatelessWidget {
             child: Container(
               width: double.maxFinite,
               height: Dimensions.popularFoodImgSize,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: AssetImage(
-                    "assets/images/food01.jpg",
+                  image: NetworkImage(
+                    AppConstant.BASE_URL +
+                        AppConstant.UPLOAD_URL +
+                        product.img!,
                   ),
                 ),
               ),
@@ -38,11 +51,18 @@ class PopularFoodDetial extends StatelessWidget {
             top: Dimensions.height45,
             left: Dimensions.width20,
             right: Dimensions.width20,
-            child: const Row(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppIcon(icon: Icons.arrow_back_ios),
-                AppIcon(icon: Icons.shopping_cart_outlined),
+                GestureDetector(
+                  child: const AppIcon(icon: Icons.arrow_back_ios),
+                  onTap: () {
+                    Get.to(
+                      () => const MainFoodPage(),
+                    );
+                  },
+                ),
+                const AppIcon(icon: Icons.shopping_cart_outlined),
               ],
             ),
           ),
@@ -68,8 +88,9 @@ class PopularFoodDetial extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   AppColumn(
-                    text: "Chinese Side",
+                    text: product.name,
                     size: Dimensions.font26,
+                    starCount: product.stars,
                   ),
                   SizedBox(
                     height: Dimensions.height20,
@@ -78,11 +99,10 @@ class PopularFoodDetial extends StatelessWidget {
                   SizedBox(
                     height: Dimensions.height12,
                   ),
-                  const Expanded(
+                  Expanded(
                     child: SingleChildScrollView(
                       child: ExpandableTextWidget(
-                        text:
-                            "Chicken is a popular and versatile protein source enjoyed by people all around the world. Whether grilled, roasted, fried, or baked, chicken dishes offer a wide range of flavors and culinary possibilities. Its tender and juicy meat, combined with its mild taste, makes chicken a favorite ingredient in numerous cuisines. Chicken is a popular and versatile protein source enjoyed by people all around the world. Whether grilled, roasted, fried, or baked, chicken dishes offer a wide range of flavors and culinary possibilities. Its tender and juicy meat, combined with its mild taste, makes chicken a favorite ingredient in numerous cuisines. makes chicken a favorite ingredient in numerous cuisinesmakes chicken a favorite ingredient in numerous cuisinesmakes chicken a favorite ingredient in numerous cuisines",
+                        text: product.description!,
                       ),
                     ),
                   )
@@ -153,7 +173,7 @@ class PopularFoodDetial extends StatelessWidget {
                 color: AppColor.mainColor,
               ),
               child: BigText(
-                text: "\$10 | Add to cart",
+                text: "\$ ${product.price!} | Add to cart",
                 color: Colors.white,
               ),
             )
