@@ -206,21 +206,21 @@ class PopularFoodDetial extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(
-                padding: EdgeInsets.fromLTRB(
-                  Dimensions.width20,
-                  Dimensions.height20,
-                  Dimensions.width20,
-                  Dimensions.height20,
-                ),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(Dimensions.radius20),
-                  color: AppColor.mainColor,
-                ),
-                child: GestureDetector(
-                  onTap: () {
-                    popularProduct.addItem(product);
-                  },
+              GestureDetector(
+                onTap: () {
+                  popularProduct.addItem(product);
+                },
+                child: Container(
+                  padding: EdgeInsets.fromLTRB(
+                    Dimensions.width20,
+                    Dimensions.height20,
+                    Dimensions.width20,
+                    Dimensions.height20,
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(Dimensions.radius20),
+                    color: AppColor.mainColor,
+                  ),
                   child: BigText(
                     text: "\$ ${product.price!} | Add to cart",
                     color: Colors.white,
