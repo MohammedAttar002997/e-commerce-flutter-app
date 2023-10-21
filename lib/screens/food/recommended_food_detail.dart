@@ -15,10 +15,11 @@ import '../../widgets/exbandable_text_widget.dart';
 
 class RecommendedFoodDetail extends StatelessWidget {
   final int pageId;
-
+  final String page;
   const RecommendedFoodDetail({
     super.key,
     required this.pageId,
+    required this.page,
   });
 
   @override
@@ -40,46 +41,50 @@ class RecommendedFoodDetail extends StatelessWidget {
                 GestureDetector(
                   child: const AppIcon(icon: Icons.clear),
                   onTap: () {
-                    Get.toNamed(
-                      RouteHelper.getInitial(),
-                    );
+                    if (page == 'cartpage') {
+                      Get.toNamed(RouteHelper.getCartPage());
+                    } else {
+                      Get.toNamed(RouteHelper.getInitial());
+                    }
                   },
                 ),
                 GetBuilder<PopularProductController>(builder: (controller) {
-                  return Stack(
-                    children: [
-                      const AppIcon(icon: Icons.shopping_cart_outlined),
-                      Get.find<PopularProductController>().totalItems >= 1
-                          ? Positioned(
-                              right: 0,
-                              top: 0,
-                              child: GestureDetector(
-                                onTap: () {
-                                  Get.to(() => const CartPage());
-                                },
-                                child: AppIcon(
+                  return GestureDetector(
+                    onTap: (){
+                      if( controller.totalItems >= 1){
+                        Get.toNamed(RouteHelper.getCartPage());
+                      }
+                    },
+                    child: Stack(
+                      children: [
+                        const AppIcon(icon: Icons.shopping_cart_outlined),
+                        controller.totalItems >= 1
+                            ? const Positioned(
+                                right: 0,
+                                top: 0,
+                                child:  AppIcon(
                                   icon: Icons.circle,
                                   size: 20,
                                   iconColor: Colors.transparent,
                                   backgroundColor: AppColor.mainColor,
                                 ),
-                              ),
-                            )
-                          : Container(),
-                      Get.find<PopularProductController>().totalItems >= 1
-                          ? Positioned(
-                              right: 6,
-                              top: 3,
-                              child: BigText(
-                                text: Get.find<PopularProductController>()
-                                    .totalItems
-                                    .toString(),
-                                size: 12,
-                                color: Colors.white,
-                              ),
-                            )
-                          : Container(),
-                    ],
+                              )
+                            : Container(),
+                        Get.find<PopularProductController>().totalItems >= 1
+                            ? Positioned(
+                                right: 6,
+                                top: 3,
+                                child: BigText(
+                                  text: Get.find<PopularProductController>()
+                                      .totalItems
+                                      .toString(),
+                                  size: 12,
+                                  color: Colors.white,
+                                ),
+                              )
+                            : Container(),
+                      ],
+                    ),
                   );
                 }),
               ],

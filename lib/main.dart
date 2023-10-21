@@ -25,7 +25,6 @@ class FlutterEcommerceApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: RouteHelper.initial,
       getPages: RouteHelper.routes,
-      home: const MainFoodPage(),
     );
   }
 }

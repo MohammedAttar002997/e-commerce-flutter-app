@@ -1,3 +1,5 @@
+import 'package:flutter_ecommerce_app_clean_code/models/products_model.dart';
+
 class CartModel {
   int? id;
   String? name;
@@ -6,6 +8,7 @@ class CartModel {
   int? quantity;
   String? time;
   bool? isExist;
+  ProductModel?  productModel;
 
   CartModel({
     this.id,
@@ -15,6 +18,7 @@ class CartModel {
     this.quantity,
     this.isExist,
     this.time,
+    this.productModel,
   });
 
   CartModel.fromJson(Map<String, dynamic> json) {
@@ -25,5 +29,6 @@ class CartModel {
     quantity=json['quantity'];
     isExist=json['isExist'];
     time=json['time'];
+    productModel=ProductModel.fromJson(json['product']);
   }
 }
