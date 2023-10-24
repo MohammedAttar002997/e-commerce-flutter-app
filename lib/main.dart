@@ -3,6 +3,7 @@ import 'package:flutter_ecommerce_app_clean_code/controllers/popular_product_con
 import 'package:flutter_ecommerce_app_clean_code/routes/route_helper.dart';
 import 'package:flutter_ecommerce_app_clean_code/screens/food/recommended_food_detail.dart';
 import 'package:flutter_ecommerce_app_clean_code/screens/home/food_page_body.dart';
+import 'package:flutter_ecommerce_app_clean_code/screens/splash/splash_screen.dart';
 import 'package:get/get.dart';
 import 'controllers/recommended_product_controller.dart';
 import 'helper/dependencies.dart' as dep;
@@ -19,12 +20,19 @@ class FlutterEcommerceApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.find<PopularProductController>().getPopularProductList();
-    Get.find<RecommendedProductController>().getRecommendedProductList();
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: RouteHelper.initial,
-      getPages: RouteHelper.routes,
+    return GetBuilder<PopularProductController>(
+      builder: (_) {
+        return GetBuilder<RecommendedProductController>(
+          builder: (_) {
+            return GetMaterialApp(
+              debugShowCheckedModeBanner: false,
+              initialRoute: RouteHelper.getSplashPage(),
+              // home: SplashScreen(),
+              getPages: RouteHelper.routes,
+            );
+          }
+        );
+      }
     );
   }
 }
