@@ -7,15 +7,17 @@ import '../models/cart_model.dart';
 import '../utils/colors.dart';
 
 class CartController extends GetxController {
-  final CartReop cartReop;
+  final CartRepo cartRepo;
 
   CartController({
-    required this.cartReop,
+    required this.cartRepo,
   });
 
   Map<int, CartModel> _items = {};
 
   Map<int, CartModel> get items => _items;
+
+  List<CartModel> storageItems = [];
 
   void addItem(ProductModel productModel, int quantity) {
     var totalQuantity = 0;
@@ -59,6 +61,7 @@ class CartController extends GetxController {
         );
       }
     }
+    cartRepo.addToCartList(getItems);
     update();
   }
 
@@ -101,5 +104,18 @@ class CartController extends GetxController {
       total += value.price! * value.quantity!;
     });
     return total;
+  }
+
+  List<CartModel> getCartData() {
+    setCart = cartRepo.getCartList();
+    return storageItems;
+  }
+
+  set setCart(List<CartModel> items) {
+    storageItems = items;
+
+    for (int i = 0; i < storageItems.length; i++) {
+      _items.putIfAbsent(storageItems[i].id!, () => storageItems[i]);
+    }
   }
 }
