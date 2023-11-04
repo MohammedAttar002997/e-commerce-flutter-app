@@ -31,7 +31,6 @@ class PopularProductController extends GetxController {
   Future<void> getPopularProductList() async {
     Response response = await productRepo.getPopularProductList();
     if (response.statusCode == 200) {
-      print("Got some products");
       _popularProductList = [];
       _popularProductList.addAll(Product.fromJson(response.body).products);
       _isLoaded = true;
@@ -90,7 +89,7 @@ class PopularProductController extends GetxController {
     _quantity = 0;
     _inCartItems = _cart.getQuantity(productModel);
     _cart.items.forEach((key, value) {
-      print("The id is ${value.id} and the quantity is ${value.quantity}");
+      // print("The id is ${value.id} and the quantity is ${value.quantity}");
     });
     update();
   }
