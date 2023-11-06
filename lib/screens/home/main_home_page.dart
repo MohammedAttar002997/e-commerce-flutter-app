@@ -3,7 +3,10 @@ import 'package:flutter_ecommerce_app_clean_code/utils/colors.dart';
 import 'package:flutter_ecommerce_app_clean_code/utils/dimensions.dart';
 import 'package:flutter_ecommerce_app_clean_code/widgets/big_text.dart';
 import 'package:flutter_ecommerce_app_clean_code/widgets/small_text.dart';
+import 'package:get/get.dart';
 
+import '../../controllers/popular_product_controller.dart';
+import '../../controllers/recommended_product_controller.dart';
 import 'food_page_body.dart';
 
 class MainFoodPage extends StatefulWidget {
@@ -14,12 +17,18 @@ class MainFoodPage extends StatefulWidget {
 }
 
 class _MainFoodPageState extends State<MainFoodPage> {
+  Future<void> _loadResources() async {
+    await Get.find<PopularProductController>().getPopularProductList();
+    await Get.find<RecommendedProductController>().getRecommendedProductList();
+  }
+
   @override
   Widget build(BuildContext context) {
     print(
         "Current screen size${MediaQuery.of(context).size.height.toString()}");
-    return Scaffold(
-      body: Column(
+    return RefreshIndicator(
+      onRefresh: _loadResources,
+      child: Column(
         children: [
           Container(
             margin: EdgeInsets.only(
