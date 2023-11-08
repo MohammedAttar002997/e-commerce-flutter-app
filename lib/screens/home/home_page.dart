@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app_clean_code/screens/account/account_page.dart';
+import 'package:flutter_ecommerce_app_clean_code/screens/auth/sign_up_page.dart';
 import 'package:flutter_ecommerce_app_clean_code/screens/cart/cart_history.dart';
 import 'package:flutter_ecommerce_app_clean_code/screens/home/main_home_page.dart';
 import 'package:flutter_ecommerce_app_clean_code/utils/colors.dart';
@@ -18,9 +19,7 @@ class _HomePageState extends State<HomePage> {
 
   List pages = [
     const MainFoodPage(),
-    Container(
-      color: Colors.red,
-    ),
+    const SignUpPage(),
     const CartHistory(),
     const AccountPage(),
   ];

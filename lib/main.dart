@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app_clean_code/controllers/cart_controller.dart';
 import 'package:flutter_ecommerce_app_clean_code/controllers/popular_product_controller.dart';
 import 'package:flutter_ecommerce_app_clean_code/routes/route_helper.dart';
+import 'package:flutter_ecommerce_app_clean_code/screens/auth/sign_in_page.dart';
+import 'package:flutter_ecommerce_app_clean_code/screens/auth/sign_up_page.dart';
 import 'package:flutter_ecommerce_app_clean_code/screens/food/recommended_food_detail.dart';
 import 'package:flutter_ecommerce_app_clean_code/screens/home/food_page_body.dart';
 import 'package:flutter_ecommerce_app_clean_code/screens/splash/splash_screen.dart';
@@ -24,11 +26,12 @@ class FlutterEcommerceApp extends StatelessWidget {
     Get.find<CartController>().getCartData();
     return GetBuilder<PopularProductController>(builder: (_) {
       return GetBuilder<RecommendedProductController>(builder: (_) {
-        return GetMaterialApp(
+        return const GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          initialRoute: RouteHelper.getSplashPage(),
+          home: SignInPage(),
+          // initialRoute: RouteHelper.getSplashPage(),
           // home: SplashScreen(),
-          getPages: RouteHelper.routes,
+          // getPages: RouteHelper.routes,
         );
       });
     });
