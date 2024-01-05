@@ -26,12 +26,12 @@ class FlutterEcommerceApp extends StatelessWidget {
     Get.find<CartController>().getCartData();
     return GetBuilder<PopularProductController>(builder: (_) {
       return GetBuilder<RecommendedProductController>(builder: (_) {
-        return const GetMaterialApp(
+        return  GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          home: SignInPage(),
-          // initialRoute: RouteHelper.getSplashPage(),
+          // home: SignInPage(),
+          initialRoute: RouteHelper.getSplashPage(),
           // home: SplashScreen(),
-          // getPages: RouteHelper.routes,
+          getPages: RouteHelper.routes,
         );
       });
     });

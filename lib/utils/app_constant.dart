@@ -10,7 +10,14 @@ class AppConstant {
   static const String RECOMMENDED_PRODUCT_URI = "/api/v1/products/recommended";
   static const String DRUBKS_URI = "/api/v1/products/drinks";
   static const String UPLOAD_URL = "/uploads/";
+
+  //auth endpoint
+  static const String REGISTRATION_URL = "/api/v1/auth/register";
+  static const String LOGIN_URL = "/api/v1/auth/login";
+
   static const String TOKEN = "DBtoken";
+  static const String PHONE = "";
+  static const String PASSWORD = "";
   static const String CART_LIST = "cart-list";
   static const String CART_HISTORY_LIST = "cart-History-list";
 }

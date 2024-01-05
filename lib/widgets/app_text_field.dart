@@ -7,12 +7,14 @@ class AppTextField extends StatelessWidget {
   final TextEditingController textController;
   final String hintText;
   final IconData icon;
+  final bool isObscure;
 
   const AppTextField({
     super.key,
     required this.textController,
     required this.hintText,
     required this.icon,
+    this.isObscure = false,
   });
 
   @override
@@ -26,39 +28,40 @@ class AppTextField extends StatelessWidget {
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            blurRadius: 10,
-            spreadRadius: 7,
+            blurRadius: 3,
+            spreadRadius: 1,
             offset: const Offset(1, 10),
             color: Colors.grey.withOpacity(0.2),
           ),
         ],
         borderRadius: BorderRadius.circular(
-          Dimensions.radius30,
+          Dimensions.radius15,
         ),
       ),
       child: TextField(
+        obscureText: isObscure ? true : false,
         controller: textController,
         decoration: InputDecoration(
           hintText: hintText,
-          prefixIcon:  Icon(
+          prefixIcon: Icon(
             icon,
             color: AppColor.yellowColor,
           ),
           focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(Dimensions.radius30),
+              borderRadius: BorderRadius.circular(Dimensions.radius15),
               borderSide: const BorderSide(
                 width: 1.0,
                 color: Colors.white,
               )),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(Dimensions.radius30),
+            borderRadius: BorderRadius.circular(Dimensions.radius15),
             borderSide: const BorderSide(
               width: 1.0,
               color: Colors.white,
             ),
           ),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(Dimensions.radius30),
+            borderRadius: BorderRadius.circular(Dimensions.radius15),
           ),
         ),
       ),
